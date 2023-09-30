@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://1fg5dh3k8uv3"]
+
+[ext_resource type="Script" path="res://scenes/PackableItem.gd" id="1_cwnas"]
+
+[node name="PackableItem" type="Node2D"]
+script = ExtResource("1_cwnas")

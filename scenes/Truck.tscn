@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccdsep4gfb4b6"]
+
+[ext_resource type="Texture2D" uid="uid://clpcx50q23i1n" path="res://assets/truck1.png" id="1_38jq4"]
+[ext_resource type="Texture2D" uid="uid://cb0okpa6thpf5" path="res://assets/truck3.png" id="2_1ql2x"]
+[ext_resource type="Texture2D" uid="uid://bom0ompsp2ij6" path="res://assets/truck2.png" id="3_3r5m2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qyal0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_38jq4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1ql2x")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_38jq4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3r5m2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1ql2x")
+}],
+"loop": true,
+"name": &"starting",
+"speed": 5.0
+}]
+
+[node name="Truck" type="Node2D"]
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+position = Vector2(384, 128)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_qyal0")
