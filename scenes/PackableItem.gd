@@ -12,21 +12,73 @@ enum Shape {
 	vase,
 }
 
+var shapes: Dictionary =  {
+	"bed": {
+		"holdable": preload("res://scenes/bed/Holdable.tscn"),
+		"physical": preload("res://scenes/bed/Physical.tscn"),
+		"size": 3
+	},
+	"bookshelf": {
+		"holdable": preload("res://scenes/bookshelf/Holdable.tscn"),
+		"physical": preload("res://scenes/bookshelf/Physical.tscn"),
+		"size": 6
+	},
+	"car": {
+		"holdable": preload("res://scenes/car/Holdable.tscn"),
+		"physical": preload("res://scenes/car/Physical.tscn"),
+		"size": 6
+	},
+	"chair": {
+		"holdable": preload("res://scenes/chair/Holdable.tscn"),
+		"physical": preload("res://scenes/chair/Physical.tscn"),
+		"size": 2
+	},
+	"coffee_table": {
+		"holdable": preload("res://scenes/coffee_table/Holdable.tscn"),
+		"physical": preload("res://scenes/coffee_table/Physical.tscn"),
+		"size": 2
+	},
+	"lamp": {
+		"holdable": preload("res://scenes/lamp/Holdable.tscn"),
+		"physical": preload("res://scenes/lamp/Physical.tscn"),
+		"size": 3
+	},
+	"piano": {
+		"holdable": preload("res://scenes/piano/Holdable.tscn"),
+		"physical": preload("res://scenes/piano/Physical.tscn"),
+		"size": 8
+	},
+	"table": {
+		"holdable": preload("res://scenes/table/Holdable.tscn"),
+		"physical": preload("res://scenes/table/Physical.tscn"),
+		"size": 6
+	},
+	"vase": {
+		"holdable": preload("res://scenes/vase/Holdable.tscn"),
+		"physical": preload("res://scenes/vase/Physical.tscn"),
+		"size": 1
+	},
+}
+
 @export var held: bool
 
 @export var weight: int
 @export var shape: Shape
 @export var fragility: int
 
+var object
 var overlaps: Array = []
-var required_size: int = 2
+var required_size: int
 var pressable = false
 var waited = true
 var mousable = false
 
+var ignore = true
+
 func _ready():
-	var loadable: PackedScene = load("res://scenes/" + Shape.keys()[shape] + "/Holdable.tscn")
-	add_child(loadable.instantiate(), false, INTERNAL_MODE_DISABLED)
+	object = shapes[Shape.keys()[shape]]
+	required_size = object.size
+	add_child(object.holdable.instantiate(), false, INTERNAL_MODE_DISABLED)
 	var area: Area2D = get_node("Area2D")
 	area.connect('area_entered', add_area)
 	area.connect('area_exited', remove_area)
@@ -41,8 +93,9 @@ func _process(_delta):
 		pressable = can_press()
 
 func make_real():
-	var loadable: PackedScene = load("res://scenes/" + Shape.keys()[shape] + "/Physical.tscn")	
-	add_child(loadable.instantiate(), false, INTERNAL_MODE_DISABLED)
+	if ignore:
+		return
+	add_child(object.physical.instantiate(), false, INTERNAL_MODE_DISABLED)
 	get_node("RigidBody2D").mass = float(weight)
 	get_node("Area2D").queue_free()
 
@@ -61,12 +114,19 @@ func unmake_mousable():
 	
 func _input(event):
 	if event.is_action("mouse_click", true): 
-		if held && waited && pressable:
-			return put_down()
+		if held && waited:
+			if pressable:
+				return put_down()
+			else:
+				if overlaps.size() == 0:
+					put_down()
+					ignore = true
+					return 
 		if mousable && !Misc.holding && waited:
 			pick_up()
 
 func pick_up():
+	ignore = true
 	Misc.holding = true
 	held = true
 	waited = false
@@ -75,6 +135,7 @@ func pick_up():
 	get_node("Area2D/Timer").start()
 
 func put_down():
+	ignore = false
 	Misc.holding = false
 	held = false
 	waited = false

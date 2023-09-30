@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1lqipemc7f4l"]
+
+[ext_resource type="Texture2D" uid="uid://dj2oyhyokwf2l" path="res://assets/table.png" id="1_6ulcq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_duvq7"]
+size = Vector2(64, 32)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6ulcq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_duvq7")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
