@@ -40,6 +40,12 @@ func _process(_delta):
 		global_position = Vector2(int(mouse.x/32)*32, int(mouse.y/32)*32) 
 		pressable = can_press()
 
+func make_real():
+	var loadable: PackedScene = load("res://scenes/" + Shape.keys()[shape] + "/Physical.tscn")	
+	add_child(loadable.instantiate(), false, INTERNAL_MODE_DISABLED)
+	get_node("RigidBody2D").mass = float(weight)
+	get_node("Area2D").queue_free()
+
 func add_area(collision):
 	if collision.has_method("get_full"):
 		overlaps.append(collision)

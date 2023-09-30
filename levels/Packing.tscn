@@ -58,3 +58,9 @@ shape = 4
 position = Vector2(70, 261)
 weight = 100
 shape = 4
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -37,9 +37,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Truck" type="Node2D"]
+[node name="Truck" type="AnimatableBody2D"]
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
 position = Vector2(384, 128)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_qyal0")
+animation = &"starting"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 7)
+scale = Vector2(1, 1.7)
+polygon = PackedVector2Array(0, -4.11765, -16, -13.5294, 656, -13.5294, 656, 155.882, -16, 155.882, -16, -4.11765, 0, 0.588235, 0, 146.471, 640, 146.471, 640, -4.11765)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(360, 152)
+enabled = false
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
