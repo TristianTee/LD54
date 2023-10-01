@@ -1,71 +1,77 @@
 extends Node2D
 
-enum Shape {
-	bed,
-	bookshelf,
-	car,
-	chair,
-	coffee_table,
-	lamp,
-	piano,
-	table,
-	vase,
-}
-
 var shapes: Dictionary =  {
 	"bed": {
 		"holdable": preload("res://scenes/bed/Holdable.tscn"),
 		"physical": preload("res://scenes/bed/Physical.tscn"),
-		"size": 3
+		"size": 3,
+		"weight": 7,
+		"fragility": 2
 	},
 	"bookshelf": {
 		"holdable": preload("res://scenes/bookshelf/Holdable.tscn"),
 		"physical": preload("res://scenes/bookshelf/Physical.tscn"),
-		"size": 6
+		"size": 6,
+		"weight": 8,
+		"fragility": 4
 	},
 	"car": {
 		"holdable": preload("res://scenes/car/Holdable.tscn"),
 		"physical": preload("res://scenes/car/Physical.tscn"),
-		"size": 6
+		"size": 24,
+		"weight": 10,
+		"fragility": 6
 	},
 	"chair": {
 		"holdable": preload("res://scenes/chair/Holdable.tscn"),
 		"physical": preload("res://scenes/chair/Physical.tscn"),
-		"size": 2
+		"size": 2,
+		"weight": 2,
+		"fragility": 2
 	},
 	"coffee_table": {
 		"holdable": preload("res://scenes/coffee_table/Holdable.tscn"),
 		"physical": preload("res://scenes/coffee_table/Physical.tscn"),
-		"size": 2
+		"size": 2,
+		"weight": 3,
+		"fragility": 1
 	},
 	"lamp": {
 		"holdable": preload("res://scenes/lamp/Holdable.tscn"),
 		"physical": preload("res://scenes/lamp/Physical.tscn"),
-		"size": 3
+		"size": 3,
+		"weight": 2,
+		"fragility": 4
 	},
-	"piano": {
-		"holdable": preload("res://scenes/piano/Holdable.tscn"),
-		"physical": preload("res://scenes/piano/Physical.tscn"),
-		"size": 8
-	},
+	#"piano": {
+	#	"holdable": preload("res://scenes/piano/Holdable.tscn"),
+	#	"physical": preload("res://scenes/piano/Physical.tscn"),
+	#	"size": 8,
+	#	"weight": 9,
+	#	"fragility": 5
+	#},
 	"table": {
 		"holdable": preload("res://scenes/table/Holdable.tscn"),
 		"physical": preload("res://scenes/table/Physical.tscn"),
-		"size": 6
+		"size": 8,
+		"weight": 5,
+		"fragility": 3
 	},
 	"vase": {
 		"holdable": preload("res://scenes/vase/Holdable.tscn"),
 		"physical": preload("res://scenes/vase/Physical.tscn"),
-		"size": 1
+		"size": 1,
+		"weight": 1,
+		"fragility": 10
 	},
 }
 
-@export var held: bool
+@export var shape: String 
 
-@export var weight: int
-@export var shape: Shape
-@export var fragility: int
+var held: bool
 
+var weight: int
+var fragility: int
 var object
 var overlaps: Array = []
 var required_size: int
@@ -76,8 +82,11 @@ var mousable = false
 var ignore = true
 
 func _ready():
-	object = shapes[Shape.keys()[shape]]
+	print(shape)
+	object = shapes[shape]
 	required_size = object.size
+	weight = object.weight
+	fragility = object.fragility
 	add_child(object.holdable.instantiate(), false, INTERNAL_MODE_DISABLED)
 	var area: Area2D = get_node("Area2D")
 	area.connect('area_entered', add_area)
@@ -96,7 +105,7 @@ func make_real():
 	if ignore:
 		return
 	add_child(object.physical.instantiate(), false, INTERNAL_MODE_DISABLED)
-	get_node("RigidBody2D").mass = float(weight)
+	get_node("RigidBody2D").mass = weight
 	get_node("Area2D").queue_free()
 
 func add_area(collision):

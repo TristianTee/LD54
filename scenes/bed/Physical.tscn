@@ -1,16 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt46gkj820x7w"]
+[gd_scene load_steps=3 format=3 uid="uid://bjifssfg8h7fa"]
 
-[ext_resource type="Texture2D" uid="uid://dj2oyhyokwf2l" path="res://assets/table.png" id="1_6ulcq"]
+[ext_resource type="Texture2D" uid="uid://bec53ffig4i68" path="res://assets/bed.png" id="1_yfu5r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_duvq7"]
-size = Vector2(64, 32)
+size = Vector2(96, 32)
 
 [node name="RigidBody2D" type="RigidBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_6ulcq")
+position = Vector2(16, 0)
+texture = ExtResource("1_yfu5r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 0)
 shape = SubResource("RectangleShape2D_duvq7")
 
 [node name="Timer" type="Timer" parent="."]

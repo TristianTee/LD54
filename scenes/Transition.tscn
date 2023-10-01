@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://didmes38m16pn"]
+
+[ext_resource type="Script" path="res://scenes/Transition.gd" id="1_qvgkp"]
+
+[node name="Transition" type="CanvasLayer"]
+script = ExtResource("1_qvgkp")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 1
+color = Color(0.192157, 0, 0.192157, 1)

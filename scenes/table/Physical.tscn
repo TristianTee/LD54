@@ -1,17 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://nsryr3j47jha"]
+[gd_scene load_steps=2 format=3 uid="uid://nsryr3j47jha"]
 
 [ext_resource type="Texture2D" uid="uid://dj2oyhyokwf2l" path="res://assets/table.png" id="1_fmv5x"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_duvq7"]
-size = Vector2(64, 32)
 
 [node name="RigidBody2D" type="RigidBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+scale = Vector2(2, 2)
 texture = ExtResource("1_fmv5x")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_duvq7")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -16)
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(-32, -16, -32, 16, -25, 16, -25, -5, 25, -5, 25, 16, 32, 16, 32, -16)
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

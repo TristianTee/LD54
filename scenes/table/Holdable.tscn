@@ -3,14 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://dj2oyhyokwf2l" path="res://assets/table.png" id="1_hd4mb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_duvq7"]
-size = Vector2(64, 32)
+size = Vector2(126, 61)
 
 [node name="Area2D" type="Area2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+scale = Vector2(2, 2)
 texture = ExtResource("1_hd4mb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16.5)
 shape = SubResource("RectangleShape2D_duvq7")
 
 [node name="Timer" type="Timer" parent="."]

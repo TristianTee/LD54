@@ -1,16 +1,20 @@
 [gd_scene load_steps=3 format=3 uid="uid://db26ardmf1r6j"]
 
-[ext_resource type="Texture2D" uid="uid://dj2oyhyokwf2l" path="res://assets/table.png" id="1_fagl4"]
+[ext_resource type="Texture2D" uid="uid://d1gbxbtqth15j" path="res://assets/car.png" id="1_64ybh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_duvq7"]
-size = Vector2(64, 32)
+size = Vector2(96, 62)
 
 [node name="Area2D" type="Area2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_fagl4")
+position = Vector2(32, -16)
+scale = Vector2(2, 2)
+texture = ExtResource("1_64ybh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, -17)
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_duvq7")
 
 [node name="Timer" type="Timer" parent="."]

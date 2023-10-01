@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btkh6yq3fusnb"
-path="res://.godot/imported/coin-Sheet.png-5a8a40a87fef70721506f4a63522b879.ctex"
+uid="uid://cpejow3ieewc8"
+path="res://.godot/imported/road.png-72005ad96a94b3869b023c4f4a0b0b7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/coin-Sheet.png"
-dest_files=["res://.godot/imported/coin-Sheet.png-5a8a40a87fef70721506f4a63522b879.ctex"]
+source_file="res://assets/road.png"
+dest_files=["res://.godot/imported/road.png-72005ad96a94b3869b023c4f4a0b0b7d.ctex"]
 
 [params]
 

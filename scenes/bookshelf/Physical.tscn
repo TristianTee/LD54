@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1lqipemc7f4l"]
 
-[ext_resource type="Texture2D" uid="uid://dj2oyhyokwf2l" path="res://assets/table.png" id="1_6ulcq"]
+[ext_resource type="Texture2D" uid="uid://cl7j3k7w0k1th" path="res://assets/bookshelf.png" id="1_sun7m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_duvq7"]
-size = Vector2(64, 32)
+size = Vector2(64, 96)
 
 [node name="RigidBody2D" type="RigidBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_6ulcq")
+texture = ExtResource("1_sun7m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_duvq7")

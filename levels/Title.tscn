@@ -1,3 +1,95 @@
-[gd_scene format=3 uid="uid://def116qk0l0vg"]
+[gd_scene load_steps=4 format=3 uid="uid://def116qk0l0vg"]
+
+[ext_resource type="Script" path="res://levels/Title.gd" id="1_xhy6v"]
+[ext_resource type="Texture2D" uid="uid://cpejow3ieewc8" path="res://assets/road.png" id="2_e4sjg"]
+[ext_resource type="PackedScene" uid="uid://didmes38m16pn" path="res://scenes/Transition.tscn" id="3_ljkqq"]
 
 [node name="Title" type="Node2D"]
+script = ExtResource("1_xhy6v")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -98.0
+offset_right = 2002.0
+offset_bottom = 652.0
+texture = ExtResource("2_e4sjg")
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -297.0
+offset_top = -136.0
+offset_right = 298.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.109
+anchor_top = 0.213
+anchor_right = 0.109
+anchor_bottom = 0.213
+offset_left = -24.855
+offset_top = -5.936
+offset_right = 30.145
+offset_bottom = 20.064
+text = "Seed"
+
+[node name="Seed" type="TextEdit" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.184874
+anchor_top = 0.172794
+anchor_right = 0.583193
+anchor_bottom = 0.3125
+grow_horizontal = 2
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 485.0
+offset_top = 47.0
+offset_right = 562.0
+offset_bottom = 82.0
+text = "PASTE"
+
+[node name="Button2" type="Button" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 386.0
+offset_top = 47.0
+offset_right = 463.0
+offset_bottom = 81.0
+text = "COPY"
+
+[node name="Button3" type="Button" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 164.0
+offset_right = 396.0
+offset_bottom = 225.0
+text = "LET'S GET TRANSPORTING "
+
+[node name="Transition" parent="." instance=ExtResource("3_ljkqq")]
+
+[connection signal="pressed" from="Control/Panel/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Panel/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Control/Panel/Button3" to="." method="_on_button_3_pressed"]

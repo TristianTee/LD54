@@ -1,12 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkk2rjdolbmy8"]
+[gd_scene load_steps=7 format=3 uid="uid://dkk2rjdolbmy8"]
 
 [ext_resource type="PackedScene" uid="uid://ccdsep4gfb4b6" path="res://scenes/Truck.tscn" id="1_03xhr"]
 [ext_resource type="Script" path="res://levels/Packing.gd" id="1_fhkk3"]
-[ext_resource type="PackedScene" uid="uid://1fg5dh3k8uv3" path="res://scenes/PackableItem.tscn" id="2_ygtqj"]
+[ext_resource type="Texture2D" uid="uid://cpejow3ieewc8" path="res://assets/road.png" id="2_riivq"]
+[ext_resource type="Texture2D" uid="uid://wpun2jjdyd3c" path="res://assets/garage.png" id="3_0imem"]
 [ext_resource type="Script" path="res://levels/Overlay.gd" id="3_52ppt"]
+[ext_resource type="PackedScene" uid="uid://dqvn8ti08syqm" path="res://scenes/UI.tscn" id="5_egl4r"]
 
 [node name="Packing" type="Node2D"]
 script = ExtResource("1_fhkk3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 2001.0
+offset_right = 35535.0
+offset_bottom = 750.0
+texture = ExtResource("2_riivq")
+stretch_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1000, 375)
+texture = ExtResource("3_0imem")
 
 [node name="Truck" parent="." instance=ExtResource("1_03xhr")]
 position = Vector2(320, 272)
@@ -19,48 +32,10 @@ height = 8
 
 [node name="Packables" type="Node" parent="."]
 
-[node name="PackableItem" parent="Packables" instance=ExtResource("2_ygtqj")]
-position = Vector2(128, 460)
-weight = 100
-shape = 4
-
-[node name="PackableItem2" parent="Packables" instance=ExtResource("2_ygtqj")]
-position = Vector2(259, 114)
-weight = 100
-shape = 4
-
-[node name="PackableItem3" parent="Packables" instance=ExtResource("2_ygtqj")]
-position = Vector2(104, 83)
-weight = 100
-shape = 4
-
-[node name="PackableItem4" parent="Packables" instance=ExtResource("2_ygtqj")]
-position = Vector2(432, 88)
-weight = 100
-shape = 4
-
-[node name="PackableItem5" parent="Packables" instance=ExtResource("2_ygtqj")]
-position = Vector2(48, 401)
-weight = 100
-shape = 4
-
-[node name="PackableItem6" parent="Packables" instance=ExtResource("2_ygtqj")]
-position = Vector2(135, 352)
-weight = 100
-shape = 4
-
-[node name="PackableItem7" parent="Packables" instance=ExtResource("2_ygtqj")]
-position = Vector2(194, 241)
-weight = 100
-shape = 4
-
-[node name="PackableItem8" parent="Packables" instance=ExtResource("2_ygtqj")]
-position = Vector2(70, 261)
-weight = 100
-shape = 4
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="UI" parent="." instance=ExtResource("5_egl4r")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
