@@ -1,49 +1,35 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccdsep4gfb4b6"]
 
 [ext_resource type="Texture2D" uid="uid://clpcx50q23i1n" path="res://assets/truck1.png" id="1_38jq4"]
-[ext_resource type="Texture2D" uid="uid://cb0okpa6thpf5" path="res://assets/truck3.png" id="2_1ql2x"]
 [ext_resource type="Texture2D" uid="uid://bom0ompsp2ij6" path="res://assets/truck2.png" id="3_3r5m2"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_qyal0"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_38jq4")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_1ql2x")
-}],
-"loop": true,
-"name": &"moving",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_38jq4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_3r5m2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_1ql2x")
-}],
-"loop": true,
-"name": &"starting",
-"speed": 5.0
-}]
+[sub_resource type="Animation" id="Animation_wj86f"]
+resource_name = "truck"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_38jq4"), ExtResource("3_3r5m2"), ExtResource("1_38jq4"), ExtResource("3_3r5m2")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_grcwt"]
+_data = {
+"truck": SubResource("Animation_wj86f")
+}
 
 [node name="Truck" type="AnimatableBody2D"]
 
-[node name="Body" type="AnimatedSprite2D" parent="."]
+[node name="Body" type="Sprite2D" parent="."]
 position = Vector2(384, 128)
 scale = Vector2(8, 8)
-sprite_frames = SubResource("SpriteFrames_qyal0")
-animation = &"starting"
+texture = ExtResource("1_38jq4")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 7)
@@ -55,3 +41,8 @@ position = Vector2(360, 152)
 enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_grcwt")
+}

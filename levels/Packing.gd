@@ -108,6 +108,7 @@ func _on_timer_timeout():
 	truck_on = true
 	var truck_tween = create_tween()
 	$Truck/Camera2D.enabled = true
+	$Truck/AnimationPlayer.play("truck")
 	truck_tween.set_ease(Tween.EASE_IN).tween_property($Truck, "position", Vector2(5000, $Truck.position.y), 10)
 	truck_tween.set_ease(Tween.EASE_OUT).tween_property($Truck, "position", Vector2(5010, $Truck.position.y - 50), 0.1 )
 	truck_tween.set_ease(Tween.EASE_IN).tween_property($Truck, "position", Vector2(5020, $Truck.position.y + 50), 0.1 )

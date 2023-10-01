@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Money="*res://globals/money.gd"
 Misc="*res://globals/misc.gd"
+Music="*res://globals/music.tscn"
 
 [input]
 

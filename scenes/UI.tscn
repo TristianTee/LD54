@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqvn8ti08syqm"]
+[gd_scene load_steps=12 format=3 uid="uid://dqvn8ti08syqm"]
 
 [ext_resource type="Script" path="res://scenes/UI.gd" id="1_4ongw"]
 [ext_resource type="Texture2D" uid="uid://cbfnnx7xth1hm" path="res://assets/coin.png" id="2_a4y4y"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ch8kwcm8fqvmg" path="res://assets/coin3.png" id="4_v8eui"]
 [ext_resource type="Texture2D" uid="uid://ceexjnfs1jdle" path="res://assets/coin4.png" id="5_qf2xv"]
 [ext_resource type="AudioStream" uid="uid://ccgy235sj3hhq" path="res://assets/audio/coin.wav" id="6_0p31j"]
+[ext_resource type="Texture2D" uid="uid://dg744pm6fatfo" path="res://assets/music3.png" id="7_emibd"]
+[ext_resource type="Texture2D" uid="uid://d25eug6v48jr8" path="res://assets/music1.png" id="8_cxarr"]
+[ext_resource type="Texture2D" uid="uid://3duia05v4mew" path="res://assets/music2.png" id="9_g7luo"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_p6wl7"]
 frames = 7
@@ -63,3 +66,24 @@ label_settings = SubResource("LabelSettings_r4iod")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_0p31j")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -55.0
+offset_right = 8.0
+offset_bottom = 9.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+toggle_mode = true
+texture_normal = ExtResource("7_emibd")
+texture_pressed = ExtResource("8_cxarr")
+texture_hover = ExtResource("9_g7luo")
+stretch_mode = 0
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
