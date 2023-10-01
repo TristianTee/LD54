@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjmdusydf0bbi"]
+[gd_scene load_steps=3 format=3 uid="uid://bjmdusydf0bbi"]
 
+[ext_resource type="Script" path="res://scenes/Physical.gd" id="1_1tait"]
 [ext_resource type="Texture2D" uid="uid://d1ihgwx6fpcvt" path="res://assets/lamp.png" id="1_4ldko"]
 
 [node name="RigidBody2D" type="RigidBody2D"]
 position = Vector2(16, 0)
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_1tait")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_4ldko")

@@ -2,7 +2,7 @@ extends Node
 
 signal amount_changed
 
-var amount: int = 0 : 
+var amount: int = 500 : 
 	set(value):
 		if(value != 0):
 			amount += value

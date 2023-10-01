@@ -6,3 +6,4 @@ func _ready():
 
 func update_money():
 	$Coins/Label.text = str(Money.amount)
+	$AudioStreamPlayer.play()

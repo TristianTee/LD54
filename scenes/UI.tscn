@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqvn8ti08syqm"]
+[gd_scene load_steps=9 format=3 uid="uid://dqvn8ti08syqm"]
 
 [ext_resource type="Script" path="res://scenes/UI.gd" id="1_4ongw"]
 [ext_resource type="Texture2D" uid="uid://cbfnnx7xth1hm" path="res://assets/coin.png" id="2_a4y4y"]
 [ext_resource type="Texture2D" uid="uid://dpiwfpeu6aa4w" path="res://assets/coin2.png" id="3_0i0i6"]
 [ext_resource type="Texture2D" uid="uid://ch8kwcm8fqvmg" path="res://assets/coin3.png" id="4_v8eui"]
 [ext_resource type="Texture2D" uid="uid://ceexjnfs1jdle" path="res://assets/coin4.png" id="5_qf2xv"]
+[ext_resource type="AudioStream" uid="uid://ccgy235sj3hhq" path="res://assets/audio/coin.wav" id="6_0p31j"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_p6wl7"]
 frames = 7
@@ -59,3 +60,6 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "0"
 label_settings = SubResource("LabelSettings_r4iod")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_0p31j")

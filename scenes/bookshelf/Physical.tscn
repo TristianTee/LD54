@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1lqipemc7f4l"]
+[gd_scene load_steps=4 format=3 uid="uid://d1lqipemc7f4l"]
 
+[ext_resource type="Script" path="res://scenes/Physical.gd" id="1_s47vt"]
 [ext_resource type="Texture2D" uid="uid://cl7j3k7w0k1th" path="res://assets/bookshelf.png" id="1_sun7m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_duvq7"]
 size = Vector2(64, 96)
 
 [node name="RigidBody2D" type="RigidBody2D"]
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_s47vt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_sun7m")

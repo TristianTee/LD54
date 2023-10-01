@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjifssfg8h7fa"]
+[gd_scene load_steps=4 format=3 uid="uid://bjifssfg8h7fa"]
 
+[ext_resource type="Script" path="res://scenes/Physical.gd" id="1_pvk47"]
 [ext_resource type="Texture2D" uid="uid://bec53ffig4i68" path="res://assets/bed.png" id="1_yfu5r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_duvq7"]
 size = Vector2(96, 32)
 
 [node name="RigidBody2D" type="RigidBody2D"]
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_pvk47")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(16, 0)

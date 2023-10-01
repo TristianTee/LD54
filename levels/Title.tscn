@@ -35,61 +35,23 @@ offset_bottom = 134.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control/Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.109
-anchor_top = 0.213
-anchor_right = 0.109
-anchor_bottom = 0.213
-offset_left = -24.855
-offset_top = -5.936
-offset_right = 30.145
-offset_bottom = 20.064
-text = "Seed"
-
-[node name="Seed" type="TextEdit" parent="Control/Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.184874
-anchor_top = 0.172794
-anchor_right = 0.583193
-anchor_bottom = 0.3125
-grow_horizontal = 2
-context_menu_enabled = false
-shortcut_keys_enabled = false
-selecting_enabled = false
-drag_and_drop_selection_enabled = false
-virtual_keyboard_enabled = false
-middle_mouse_paste_enabled = false
-metadata/_edit_use_anchors_ = true
-
-[node name="Button" type="Button" parent="Control/Panel"]
-layout_mode = 0
-offset_left = 485.0
-offset_top = 47.0
-offset_right = 562.0
-offset_bottom = 82.0
-text = "PASTE"
-
-[node name="Button2" type="Button" parent="Control/Panel"]
-layout_mode = 0
-offset_left = 386.0
-offset_top = 47.0
-offset_right = 463.0
-offset_bottom = 81.0
-text = "COPY"
-
 [node name="Button3" type="Button" parent="Control/Panel"]
 layout_mode = 0
-offset_left = 184.0
-offset_top = 164.0
-offset_right = 396.0
-offset_bottom = 225.0
-text = "LET'S GET TRANSPORTING "
+offset_left = 171.0
+offset_top = 187.0
+offset_right = 383.0
+offset_bottom = 248.0
+text = "What could go wrong?"
+
+[node name="Label" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 44.0
+offset_right = 546.0
+offset_bottom = 179.0
+text = "You finally managed to buy your own truck. Now you can start   that transportation business you always dreamed of.                                                                                                                                                   All you got to do is buy some goods and get them from one place to another in one piece. Easy right?"
+autowrap_mode = 1
 
 [node name="Transition" parent="." instance=ExtResource("3_ljkqq")]
 
-[connection signal="pressed" from="Control/Panel/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Control/Panel/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Control/Panel/Button3" to="." method="_on_button_3_pressed"]

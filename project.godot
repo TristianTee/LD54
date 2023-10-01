@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Money="*res://globals/money.gd"
-Upgrades="*res://globals/upgrades.gd"
 Misc="*res://globals/misc.gd"
 
 [input]

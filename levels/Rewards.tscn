@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://cq12hhipmhujw"]
+
+[ext_resource type="Texture2D" uid="uid://cpejow3ieewc8" path="res://assets/road.png" id="1_5cmhr"]
+[ext_resource type="Script" path="res://levels/Rewards.gd" id="1_s01yp"]
+[ext_resource type="PackedScene" uid="uid://dqvn8ti08syqm" path="res://scenes/UI.tscn" id="2_4owu7"]
+[ext_resource type="PackedScene" uid="uid://didmes38m16pn" path="res://scenes/Transition.tscn" id="2_8h38a"]
+
+[node name="Rewards" type="Node2D"]
+script = ExtResource("1_s01yp")
+
+[node name="UI" parent="." instance=ExtResource("2_4owu7")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -98.0
+offset_right = 2002.0
+offset_bottom = 652.0
+texture = ExtResource("1_5cmhr")
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -250.0
+offset_right = 400.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Next" type="Button" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.9
+anchor_right = 0.9
+anchor_bottom = 0.9
+offset_left = -212.0
+offset_top = -61.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Next Trip  ---->"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 35.0
+offset_right = 765.0
+offset_bottom = 362.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="label" type="Label" parent="Control/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Item"
+
+[node name="label2" type="Label" parent="Control/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Damage"
+
+[node name="label3" type="Label" parent="Control/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Payout"
+
+[node name="Label" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 405.0
+offset_right = 227.0
+offset_bottom = 431.0
+text = "Total Income This Trip:"
+
+[node name="Profit" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 271.0
+offset_top = 406.0
+offset_right = 438.0
+offset_bottom = 432.0
+text = "$0"
+
+[node name="Transition" parent="." instance=ExtResource("2_8h38a")]
+
+[connection signal="pressed" from="Control/Panel/Next" to="." method="_on_next_pressed"]

@@ -6,56 +6,71 @@ var shapes: Dictionary =  {
 		"physical": preload("res://scenes/bed/Physical.tscn"),
 		"size": 3,
 		"weight": 7,
-		"fragility": 2
+		"fragility": 2,
+		"cost": 50,
+		"value": 100
 	},
 	"bookshelf": {
 		"holdable": preload("res://scenes/bookshelf/Holdable.tscn"),
 		"physical": preload("res://scenes/bookshelf/Physical.tscn"),
 		"size": 6,
 		"weight": 8,
-		"fragility": 4
+		"fragility": 3,
+		"cost": 75,
+		"value": 200
 	},
 	"car": {
 		"holdable": preload("res://scenes/car/Holdable.tscn"),
 		"physical": preload("res://scenes/car/Physical.tscn"),
 		"size": 24,
 		"weight": 10,
-		"fragility": 6
+		"fragility": 6,
+		"cost": 500,
+		"value": 2000
 	},
 	"chair": {
 		"holdable": preload("res://scenes/chair/Holdable.tscn"),
 		"physical": preload("res://scenes/chair/Physical.tscn"),
 		"size": 2,
 		"weight": 2,
-		"fragility": 2
+		"fragility": 3,
+		"cost": 5,
+		"value": 10
 	},
 	"coffee_table": {
 		"holdable": preload("res://scenes/coffee_table/Holdable.tscn"),
 		"physical": preload("res://scenes/coffee_table/Physical.tscn"),
 		"size": 2,
 		"weight": 3,
-		"fragility": 1
+		"fragility": 1,
+		"cost": 10,
+		"value": 15,
 	},
 	"lamp": {
 		"holdable": preload("res://scenes/lamp/Holdable.tscn"),
 		"physical": preload("res://scenes/lamp/Physical.tscn"),
 		"size": 3,
 		"weight": 2,
-		"fragility": 4
+		"fragility": 4,
+		"cost": 20,
+		"value": 50
 	},
 	"table": {
 		"holdable": preload("res://scenes/table/Holdable.tscn"),
 		"physical": preload("res://scenes/table/Physical.tscn"),
 		"size": 8,
 		"weight": 5,
-		"fragility": 3
+		"fragility": 3,
+		"cost": 80,
+		"value": 150
 	},
 }
 
 @export var shape: String 
 
 var held: bool
-var health: float
+var health := 100.0
+var value: int
 var weight: int
 var fragility: int
 var object
@@ -74,7 +89,7 @@ func _ready():
 	required_size = object.size
 	weight = object.weight
 	fragility = object.fragility
-	health = float(weight) / fragility
+	value = object.value
 	add_child(object.holdable.instantiate(), false, INTERNAL_MODE_DISABLED)
 	var area: Area2D = get_node("Area2D")
 	area.connect('area_entered', add_area)
@@ -91,10 +106,12 @@ func _process(_delta):
 
 func make_real():
 	if ignore:
-		return
+		queue_free()
+		return 
 	var body = object.physical.instantiate()
 	add_child(body, false, INTERNAL_MODE_DISABLED)
 	body.mass = weight
+	body.connect("ouch", take_damage)
 	get_node("Area2D").queue_free()
 	running = true
 
@@ -121,7 +138,7 @@ func _input(event):
 					put_down()
 					ignore = true
 					return 
-		if mousable && !Misc.holding && waited:
+		if !running && mousable && !Misc.holding && waited:
 			pick_up()
 
 func pick_up():
@@ -152,3 +169,9 @@ func can_press():
 				return false
 		return true
 	return false
+
+func take_damage(force: float):
+	var damage = force * fragility / 3000
+	if damage > 1:
+		print(shape, damage)
+		health -= damage

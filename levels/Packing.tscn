@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkk2rjdolbmy8"]
+[gd_scene load_steps=8 format=3 uid="uid://dkk2rjdolbmy8"]
 
 [ext_resource type="PackedScene" uid="uid://ccdsep4gfb4b6" path="res://scenes/Truck.tscn" id="1_03xhr"]
 [ext_resource type="Script" path="res://levels/Packing.gd" id="1_fhkk3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://wpun2jjdyd3c" path="res://assets/garage.png" id="3_0imem"]
 [ext_resource type="Script" path="res://levels/Overlay.gd" id="3_52ppt"]
 [ext_resource type="PackedScene" uid="uid://dqvn8ti08syqm" path="res://scenes/UI.tscn" id="5_egl4r"]
+[ext_resource type="PackedScene" uid="uid://didmes38m16pn" path="res://scenes/Transition.tscn" id="7_we6x0"]
 
 [node name="Packing" type="Node2D"]
 script = ExtResource("1_fhkk3")
@@ -30,6 +31,17 @@ script = ExtResource("3_52ppt")
 width = 20
 height = 8
 
+[node name="Panel" type="Panel" parent="."]
+offset_left = 20.0
+offset_top = 27.0
+offset_right = 275.0
+offset_bottom = 635.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 255.0
+offset_bottom = 608.0
+
 [node name="Packables" type="Node" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
@@ -38,4 +50,14 @@ one_shot = true
 
 [node name="UI" parent="." instance=ExtResource("5_egl4r")]
 
+[node name="Transition" parent="." instance=ExtResource("7_we6x0")]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 984.0
+offset_top = 114.0
+offset_right = 1140.0
+offset_bottom = 145.0
+text = "Start Trip  --->"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
