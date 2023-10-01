@@ -43,13 +43,6 @@ var shapes: Dictionary =  {
 		"weight": 2,
 		"fragility": 4
 	},
-	#"piano": {
-	#	"holdable": preload("res://scenes/piano/Holdable.tscn"),
-	#	"physical": preload("res://scenes/piano/Physical.tscn"),
-	#	"size": 8,
-	#	"weight": 9,
-	#	"fragility": 5
-	#},
 	"table": {
 		"holdable": preload("res://scenes/table/Holdable.tscn"),
 		"physical": preload("res://scenes/table/Physical.tscn"),
@@ -57,19 +50,12 @@ var shapes: Dictionary =  {
 		"weight": 5,
 		"fragility": 3
 	},
-	"vase": {
-		"holdable": preload("res://scenes/vase/Holdable.tscn"),
-		"physical": preload("res://scenes/vase/Physical.tscn"),
-		"size": 1,
-		"weight": 1,
-		"fragility": 10
-	},
 }
 
 @export var shape: String 
 
 var held: bool
-
+var health: float
 var weight: int
 var fragility: int
 var object
@@ -78,8 +64,9 @@ var required_size: int
 var pressable = false
 var waited = true
 var mousable = false
-
 var ignore = true
+var last_known_velocity
+var running = false
 
 func _ready():
 	print(shape)
@@ -87,6 +74,7 @@ func _ready():
 	required_size = object.size
 	weight = object.weight
 	fragility = object.fragility
+	health = float(weight) / fragility
 	add_child(object.holdable.instantiate(), false, INTERNAL_MODE_DISABLED)
 	var area: Area2D = get_node("Area2D")
 	area.connect('area_entered', add_area)
@@ -104,9 +92,11 @@ func _process(_delta):
 func make_real():
 	if ignore:
 		return
-	add_child(object.physical.instantiate(), false, INTERNAL_MODE_DISABLED)
-	get_node("RigidBody2D").mass = weight
+	var body = object.physical.instantiate()
+	add_child(body, false, INTERNAL_MODE_DISABLED)
+	body.mass = weight
 	get_node("Area2D").queue_free()
+	running = true
 
 func add_area(collision):
 	if collision.has_method("get_full"):
